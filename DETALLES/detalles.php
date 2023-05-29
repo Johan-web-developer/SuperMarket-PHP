@@ -11,6 +11,8 @@ require_once("config.php");
 $data = new Config();
 
 $all = $data->obtener();
+$factura = $data->obtenerFactura();
+$producto = $data->obtenerProducto();
 
 ?>
 
@@ -21,12 +23,12 @@ $all = $data->obtener();
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PROVEEDORES</title>
+  <title>DETALLE DE FACTURA</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="css/proveedores.css">
+  <link rel="stylesheet" href="css/detalles.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
@@ -47,16 +49,17 @@ $all = $data->obtener();
       </div>
     <div class="container">
       <div class="boton">
-        <button class="btn btn-success botoncito" data-bs-toggle="modal" data-bs-target="#registrarProveedores"><i class="bi bi-person-add" ></i></button>
+        <button class="btn btn-success botoncito" data-bs-toggle="modal" data-bs-target="#registrarDetalles"><i class="bi bi-person-add" ></i></button>
       </div>
-      <h1>PROVEEDORES</h1>
+      <h1>DETALLE DE FACTURAS</h1>
       <table class="table table-stripped table-success" style="text-align:center;">
                 <thead>
                   <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">NOMBRE</th>
-                    <th scope="col">TELEFONO</th>
-                    <th scope="col">CIUDAD</th>
+                    <th scope="col">ID FACTURA</th>
+                    <th scope="col">ID PRODUCTO</th>
+                    <th scope="col">CANTIDAD</th>
+                    <th scope="col">PRECIO</th>
                     <th scope="col">BORRAR</th>
                     <th scope="col">EDITAR</th>
                   </tr>
@@ -67,14 +70,15 @@ $all = $data->obtener();
                     ?>
                     <tr>
                       <td><?= $value['id']?></td>
-                      <td><?= $value['nombre']?></td>
-                      <td><?= $value['telefono']?></td>
-                      <td><?= $value['ciudad']?></td>
+                      <td><?= $value['id_factura']?></td>
+                      <td><?= $value['id_producto']?></td>
+                      <td><?= $value['cantidad']?></td>
+                      <td><?= $value['precio']?></td>
                       <td>
-                        <a class="btn btn-danger" href="borrarProveedor.php?id=<?=$value['id']?>&req=delete">Borrar</a>
+                        <a class="btn btn-danger" href="borrarDetalle.php?id=<?=$value['id']?>&req=delete">Borrar</a>
                       </td>
                       <td>
-                        <a class="btn btn-warning" href="actualizarProveedores.php?id=<?=$value['id']?>">Editar</a>
+                        <a class="btn btn-warning" href="actualizarDetalles.php?id=<?=$value['id']?>">Editar</a>
                       </td>
                     </tr>
                         <?php }?>
@@ -93,40 +97,52 @@ $all = $data->obtener();
 
 
 
-<div class="modal fade" id="registrarProveedores" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="backdrop-filter: blur(5px)">
+<div class="modal fade" id="registrarDetalles" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="backdrop-filter: blur(5px)">
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" >
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Proveedor</h1>
+        <div class="modal-content" >
+          <div class="modal-header" >
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Detalle de Factura</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" style="background-color: rgb(231, 253, 246);">
-            <form class="col d-flex flex-wrap" action="registrarProveedor.php" method="post">
+            <form class="col d-flex flex-wrap" action="registrarDetalle.php" method="post">
               <div class="mb-1 col-12">
-                <label for="nombre" class="form-label">Nombre</label>
+                <label for="id_factura" class="form-label">ID Factura</label>
+                  <select name="id_factura" id="id_factura" class="form-select">
+                    <option value="nothing">Seleccione la factura</option>
+                    <?php
+                      foreach($factura as $key => $valueF){
+                    ?>
+                    <option value="<?= $valueF['id']?>"><?= $valueF['id']?></option>
+                  <?php }?>
+                </select>
+              </div>
+              <div class="mb-1 col-12">
+                <label for="id_producto" class="form-label">ID Producto</label>
+                  <select name="id_producto" id="id_producto" class="form-select">
+                    <option value="nothing">Seleccione el producto</option>
+                    <?php
+                      foreach($producto as $key => $valueP){
+                    ?>
+                    <option value="<?= $valueP['id']?>"><?= $valueP['nombre']?></option>
+                  <?php }?>
+                </select>
+              </div>
+              <div class="mb-1 col-12">
+                <label for="cantidad" class="form-label">Cantidad</label>
                 <input 
                   type="text"
-                  id="nombre"
-                  name="nombre"
+                  id="cantidad"
+                  name="cantidad"
                   class="form-control"  
                 />
               </div>
-
               <div class="mb-1 col-12">
-                <label for="telefono" class="form-label">Teléfono</label>
+                <label for="precio" class="form-label">Precio</label>
                 <input 
                   type="text"
-                  id="telefono"
-                  name="telefono"
-                  class="form-control"  
-                />
-              </div>
-              <div class="mb-1 col-12">
-                <label for="ciudad" class="form-label">Ciudad</label>
-                <input 
-                  type="text"
-                  id="ciudad"
-                  name="ciudad"
+                  id="precio"
+                  name="precio"
                   class="form-control"  
                 />
               </div>

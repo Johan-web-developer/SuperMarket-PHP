@@ -66,7 +66,27 @@ class Config {
 
     public function obtener(){
         try {
-            $stm = $this->dbPDO->prepare("SELECT * FROM facturas");
+            $stm = $this->dbPDO->prepare("SELECT facturas.id, empleados.nombre, clientes.nombre, facturas.fecha FROM facturas INNER JOIN empleados ON facturas.id_empleado = empleados.id INNER JOIN clientes ON facturas.id_cliente = clientes.id");
+            $stm -> execute();
+            return $stm -> fetchAll(); // Método para obtener los registros PDO
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function obtenerEmpleado(){
+        try {
+            $stm = $this->dbPDO->prepare("SELECT id, nombre FROM empleados");
+            $stm -> execute();
+            return $stm -> fetchAll(); // Método para obtener los registros PDO
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function obtenerCliente(){
+        try {
+            $stm = $this->dbPDO->prepare("SELECT id, nombre FROM clientes");
             $stm -> execute();
             return $stm -> fetchAll(); // Método para obtener los registros PDO
         } catch (Exception $e) {

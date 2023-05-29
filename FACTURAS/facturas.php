@@ -11,6 +11,8 @@ require_once("config.php");
 $data = new Config();
 
 $all = $data->obtener();
+$empleado = $data->obtenerEmpleado();
+$cliente = $data->obtenerCliente();
 
 ?>
 
@@ -67,8 +69,8 @@ $all = $data->obtener();
                     ?>
                     <tr>
                       <td><?= $value['id']?></td>
-                      <td><?= $value['id_empleado']?></td>
-                      <td><?= $value['id_cliente']?></td>
+                      <td><?= $value['nombre']?></td>
+                      <td><?= $value['nombre']?></td>
                       <td><?= $value['fecha']?></td>
                       <td>
                         <a class="btn btn-danger" href="borrarFactura.php?id=<?=$value['id']?>&req=delete">Borrar</a>
@@ -106,18 +108,28 @@ $all = $data->obtener();
                 <label for="id_empleado" class="form-label">Empleado</label>
                   <select name="id_empleado" id="id_empleado" class="form-select"  >
                     <option value="nothing">Seleccione el empleado</option>
-                  </select>
+                    <?php
+                      foreach($empleado as $key => $valueE){
+                    ?>
+                    <option value="<?= $valueE['id']?>"><?= $valueE['nombre']?></option>
+                  <?php }?>
+                </select>
               </div>
-
               <div class="mb-1 col-12">
                 <label for="id_cliente" class="form-label">Cliente</label>
-                <select name="id_cliente" id="id_cliente" class="form-select"  >
+                  <select name="id_cliente" id="id_cliente" class="form-select"  >
                     <option value="nothing">Seleccione el cliente</option>
-                  </select>
+                    <?php
+                      foreach($cliente as $key => $valueC){
+                    ?>
+                    <option value="<?= $valueC['id']?>"><?= $valueC['nombre']?></option>
+                  <?php }?>
+                </select>
+              </div>
               <div class="mb-1 col-12">
                 <label for="fecha" class="form-label">Fecha</label>
                 <input 
-                  type="text"
+                  type="date"
                   id="fecha"
                   name="fecha"
                   class="form-control"  
