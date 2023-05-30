@@ -12,9 +12,12 @@ $data = new Config();
 $id = $_GET['id'];
 $data-> setId($id);
 $rer = $data->seleccionar();
+$empleado = $data->obtenerEmpleado();
+$cliente = $data->obtenerCliente();
 $vall = $rer[0];
 
 if (isset($_POST["editar"])){
+  $data->setNombreFactura($_POST["nombreFactura"]);
   $data->setId_empleado($_POST["id_empleado"]);
   $data->setId_cliente($_POST["id_cliente"]);
   $data->setFecha($_POST['fecha']);
@@ -49,16 +52,36 @@ if (isset($_POST["editar"])){
     <div id="contenido">
       <form class="col d-flex flex-wrap" action=""  method="post">
               <div class="mb-1 col-12">
+                <label for="fecha" class="form-label">Nombre de la Factura</label>
+                <input 
+                  type="text"
+                  id="nombreFactura"
+                  name="nombreFactura"
+                  class="form-control"  
+                  value ="<?php echo $vall['nombreFactura'];?>"
+                />
+              </div>
+              <div class="mb-1 col-12">
                 <label for="id_empleado" class="form-label">Empleado</label>
-                <select name="id_empleado" id="id_empleado" class="form-select" value ="<?php echo $vall['id_empleado'];?>">
+                <select name="id_empleado" id="id_empleado" class="form-select">
                     <option value="nothing">Seleccione el empleado</option>
+                    <?php
+                      foreach($empleado as $key => $valueE){
+                    ?>
+                    <option value="<?= $valueE['id']?>"><?= $valueE['nombreEmpleado']?></option>
+                  <?php }?>
                   </select>  
               </div>
 
               <div class="mb-1 col-12">
                 <label for="id_cliente" class="form-label">Cliente</label>
-                <select name="id_cliente" id="id_cliente" class="form-select" value ="<?php echo $vall['id_cliente'];?>">
+                <select name="id_cliente" id="id_cliente" class="form-select">
                     <option value="nothing">Seleccione el cliente</option>
+                    <?php
+                      foreach($cliente as $key => $valueC){
+                    ?>
+                    <option value="<?= $valueC['id']?>"><?= $valueC['nombreCliente']?></option>
+                  <?php }?>
                   </select> 
               </div>
               <div class="mb-1 col-12">

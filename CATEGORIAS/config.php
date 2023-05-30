@@ -10,14 +10,14 @@ require_once("db.php");
 
 class Config {
     private $id;
-    private $nombre;
+    private $nombreCategoria;
     private $descripcion;
     private $imagen;
     protected $dbPDO;
 
-    public function __construct($id = 0, $nombre = "", $descripcion = "", $imagen = ""){
+    public function __construct($id = 0, $nombreCategoria = "", $descripcion = "", $imagen = ""){
         $this->id = $id;
-        $this->nombre = $nombre;
+        $this->nombreCategoria = $nombreCategoria;
         $this->descripcion = $descripcion;
         $this->imagen = $imagen;
         $this->dbPDO = new PDO(DB_TYPE.":host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PWD, [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
@@ -31,12 +31,12 @@ class Config {
         return $this->id;
     }
 
-    public function setNombre($nombre){
-        $this->nombre = $nombre;
+    public function setNombreCategoria($nombreCategoria){
+        $this->nombreCategoria = $nombreCategoria;
     }
 
-    public function getNombre(){
-        return $this->nombre;
+    public function getNombreCategoria(){
+        return $this->nombreCategoria;
     }
 
     public function setDescripcion($descripcion){
@@ -57,8 +57,8 @@ class Config {
 
     public function insertDatos(){
         try {
-            $stm = $this-> dbPDO -> prepare("INSERT INTO categorias (nombre, descripcion, imagen) values(?,?,?)");
-            $stm -> execute([$this->nombre, $this->descripcion, $this->imagen]);
+            $stm = $this-> dbPDO -> prepare("INSERT INTO categorias (nombreCategoria, descripcion, imagen) values(?,?,?)");
+            $stm -> execute([$this->nombreCategoria, $this->descripcion, $this->imagen]);
         } catch (Exception $e) {
             return var_dump($e->getMessage());
         }
@@ -97,8 +97,8 @@ class Config {
 
     public function update(){
         try {
-            $stm = $this->dbPDO->prepare("UPDATE categorias SET nombre = ?, descripcion = ?, imagen = ? WHERE id = ?");
-            $stm -> execute([$this->nombre, $this->descripcion, $this->imagen, $this->id]);
+            $stm = $this->dbPDO->prepare("UPDATE categorias SET nombreCategoria = ?, descripcion = ?, imagen = ? WHERE id = ?");
+            $stm -> execute([$this->nombreCategoria, $this->descripcion, $this->imagen, $this->id]);
         } catch (Exception $e) {
             return $e->getMessage();
         }

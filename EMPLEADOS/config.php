@@ -10,15 +10,15 @@ require_once("db.php");
 
 class Config {
     private $id;
-    private $nombre;
+    private $nombreEmpleado;
     private $celular;
     private $direccion;
     private $imagen;
     protected $dbPDO;
 
-    public function __construct($id = 0, $nombre = "", $celular = "", $direccion = "", $imagen = ""){
+    public function __construct($id = 0, $nombreEmpleado = "", $celular = "", $direccion = "", $imagen = ""){
         $this->id = $id;
-        $this->nombre = $nombre;
+        $this->nombreEmpleado = $nombreEmpleado;
         $this->celular = $celular;
         $this->direccion = $direccion;
         $this->imagen = $imagen;
@@ -33,12 +33,12 @@ class Config {
         return $this->id;
     }
 
-    public function setNombre($nombre){
-        $this->nombre = $nombre;
+    public function setNombreEmpleado($nombreEmpleado){
+        $this->nombreEmpleado = $nombreEmpleado;
     }
 
-    public function getNombre(){
-        return $this->nombre;
+    public function getNombreEmpleado(){
+        return $this->nombreEmpleado;
     }
 
     public function setCelular($celular){
@@ -67,8 +67,8 @@ class Config {
 
     public function insertDatos(){
         try {
-            $stm = $this-> dbPDO -> prepare("INSERT INTO empleados (nombre, celular, direccion, imagen) values(?,?,?,?)");
-            $stm -> execute([$this->nombre, $this->celular, $this->direccion, $this->imagen]);
+            $stm = $this-> dbPDO -> prepare("INSERT INTO empleados (nombreEmpleado, celular, direccion, imagen) values(?,?,?,?)");
+            $stm -> execute([$this->nombreEmpleado, $this->celular, $this->direccion, $this->imagen]);
         } catch (Exception $e) {
             return var_dump($e->getMessage());
         }
@@ -107,8 +107,8 @@ class Config {
 
     public function update(){
         try {
-            $stm = $this->dbPDO->prepare("UPDATE empleados SET nombre = ?, celular = ?, direccion = ?, imagen = ? WHERE id = ?");
-            $stm -> execute([$this->nombre, $this->celular, $this->direccion, $this->imagen, $this->id]);
+            $stm = $this->dbPDO->prepare("UPDATE empleados SET nombreEmpleado = ?, celular = ?, direccion = ?, imagen = ? WHERE id = ?");
+            $stm -> execute([$this->nombreEmpleado, $this->celular, $this->direccion, $this->imagen, $this->id]);
         } catch (Exception $e) {
             return $e->getMessage();
         }

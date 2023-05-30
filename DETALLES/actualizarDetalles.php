@@ -12,6 +12,8 @@ $data = new Config();
 $id = $_GET['id'];
 $data-> setId($id);
 $rer = $data->seleccionar();
+$factura = $data->obtenerFactura();
+$producto = $data->obtenerProducto();
 $vall = $rer[0];
 
 if (isset($_POST["editar"])){
@@ -21,7 +23,7 @@ if (isset($_POST["editar"])){
   $data->setPrecio($_POST['precio']);
 
   $data-> update();
-  echo "<script>alert('Detalle de la factura actualizada satisfactoriamente'); document.location='detalles.php'</script>";
+  echo "<script>alert('Detalle de la Factura actualizada satisfactoriamente'); document.location='detalles.php'</script>";
 }
 
 
@@ -51,25 +53,45 @@ if (isset($_POST["editar"])){
       <form class="col d-flex flex-wrap" action=""  method="post">
               <div class="mb-1 col-12">
                 <label for="id_factura" class="form-label">ID Factura</label>
-                <select name="id_factura" id="id_factura" class="form-select" value ="<?php echo $vall['id_factura'];?>">
+                <select name="id_factura" id="id_factura" class="form-select">
                     <option value="nothing">Seleccione la factura</option>
+                    <?php
+                      foreach($factura as $key => $valueF){
+                    ?>
+                    <option value="<?= $valueF['id']?>"><?= $valueF['nombreFactura']?></option>
+                  <?php }?>
                   </select>  
               </div>
 
               <div class="mb-1 col-12">
                 <label for="id_producto" class="form-label">ID Producto</label>
-                <select name="id_producto" id="id_producto" class="form-select" value ="<?php echo $vall['id_producto'];?>">
+                <select name="id_producto" id="id_producto" class="form-select">
                     <option value="nothing">Seleccione el producto</option>
+                    <?php
+                      foreach($producto as $key => $valueP){
+                    ?>
+                    <option value="<?= $valueP['id']?>"><?= $valueP['nombre']?></option>
+                  <?php }?>
                   </select> 
               </div>
               <div class="mb-1 col-12">
-                <label for="fecha" class="form-label">Fecha</label>
+                <label for="cantidad" class="form-label">Cantidad</label>
                 <input 
                   type="text"
-                  id="fecha"
-                  name="fecha"
+                  id="cantidad"
+                  name="cantidad"
                   class="form-control"  
-                  value ="<?php echo $vall['fecha'];?>"
+                  value ="<?php echo $vall['cantidad'];?>"
+                />
+              </div>
+              <div class="mb-1 col-12">
+                <label for="precio" class="form-label">Precio</label>
+                <input 
+                  type="text"
+                  id="precio"
+                  name="precio"
+                  class="form-control"  
+                  value ="<?php echo $vall['precio'];?>"
                 />
               </div>
                  <div class=" col-12 m-2">

@@ -15,7 +15,7 @@ $rer = $data->seleccionar();
 $vall = $rer[0];
 
 if (isset($_POST["editar"])){
-  $data->setNombre($_POST["nombre"]);
+  $data->setNombreEmpleado($_POST["nombreEmpleado"]);
   $data->setCelular($_POST["celular"]);
   $data->setDireccion($_POST["direccion"]);
   if (!empty($_FILES['imagen']['tmp_name'])) {
@@ -57,13 +57,13 @@ if (isset($_POST["editar"])){
     <div id="contenido">
       <form class="col d-flex flex-wrap" action=""  method="post" enctype="multipart/form-data">
               <div class="mb-1 col-12">
-                <label for="nombre" class="form-label">Nombre</label>
+                <label for="nombreEmpleado" class="form-label">Nombre del Empleado</label>
                 <input 
                   type="text"
-                  id="nombre"
-                  name="nombre"
+                  id="nombreEmpleado"
+                  name="nombreEmpleado"
                   class="form-control"  
-                  value ="<?php echo $vall['nombre'];?>"
+                  value ="<?php echo $vall['nombreEmpleado'];?>"
                 />
               </div>
 

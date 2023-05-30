@@ -56,8 +56,8 @@ $producto = $data->obtenerProducto();
                 <thead>
                   <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">ID FACTURA</th>
-                    <th scope="col">ID PRODUCTO</th>
+                    <th scope="col">NOMBRE DE FACTURA</th>
+                    <th scope="col">PRODUCTO</th>
                     <th scope="col">CANTIDAD</th>
                     <th scope="col">PRECIO</th>
                     <th scope="col">BORRAR</th>
@@ -70,8 +70,8 @@ $producto = $data->obtenerProducto();
                     ?>
                     <tr>
                       <td><?= $value['id']?></td>
-                      <td><?= $value['id_factura']?></td>
-                      <td><?= $value['id_producto']?></td>
+                      <td><?= $value['nombreFactura']?></td>
+                      <td><?= $value['nombre']?></td>
                       <td><?= $value['cantidad']?></td>
                       <td><?= $value['precio']?></td>
                       <td>
@@ -107,18 +107,18 @@ $producto = $data->obtenerProducto();
           <div class="modal-body" style="background-color: rgb(231, 253, 246);">
             <form class="col d-flex flex-wrap" action="registrarDetalle.php" method="post">
               <div class="mb-1 col-12">
-                <label for="id_factura" class="form-label">ID Factura</label>
+                <label for="id_factura" class="form-label">¿Qué factura desea referenciar?</label>
                   <select name="id_factura" id="id_factura" class="form-select">
                     <option value="nothing">Seleccione la factura</option>
                     <?php
                       foreach($factura as $key => $valueF){
                     ?>
-                    <option value="<?= $valueF['id']?>"><?= $valueF['id']?></option>
+                    <option value="<?= $valueF['id']?>"><?= $valueF['nombreFactura']?></option>
                   <?php }?>
                 </select>
               </div>
               <div class="mb-1 col-12">
-                <label for="id_producto" class="form-label">ID Producto</label>
+                <label for="id_producto" class="form-label">¿Qué producto desea referenciar?</label>
                   <select name="id_producto" id="id_producto" class="form-select">
                     <option value="nothing">Seleccione el producto</option>
                     <?php

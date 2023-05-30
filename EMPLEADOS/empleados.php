@@ -68,7 +68,7 @@ $all = $data->obtener();
                     ?>
                     <tr>
                       <td><?= $value['id']?></td>
-                      <td><?= $value['nombre']?></td>
+                      <td><?= $value['nombreEmpleado']?></td>
                       <td><?= $value['celular']?></td>
                       <td><?= $value['direccion']?></td>
                       <td><img src="img/<?= $value['imagen']?>" style="width: 100px; border-radius: 1rem;"></td>
@@ -105,11 +105,11 @@ $all = $data->obtener();
           <div class="modal-body" style="background-color: rgb(231, 253, 246);">
             <form class="col d-flex flex-wrap" action="registrarEmpleado.php" method="post">
               <div class="mb-1 col-12">
-                <label for="nombre" class="form-label">Nombre</label>
+                <label for="nombreEmpleado" class="form-label">Nombre del Empleado</label>
                 <input 
                   type="text"
-                  id="nombre"
-                  name="nombre"
+                  id="nombreEmpleado"
+                  name="nombreEmpleado"
                   class="form-control"  
                 />
               </div>
@@ -133,7 +133,7 @@ $all = $data->obtener();
                 />
               </div>
               <div class="mb-1 col-12">
-                <label for="imagen">Imagen</label>
+                <label for="imagen" class="form-label">Imagen</label>
                   <input type="file" name="imagen" id="imagen" class="form-control" placeholder="Examinar en este equipo...">
                 </div>
               <div class=" col-12 m-2">

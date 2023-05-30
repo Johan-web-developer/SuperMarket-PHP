@@ -55,9 +55,10 @@ $cliente = $data->obtenerCliente();
       <table class="table table-stripped table-success" style="text-align:center;">
                 <thead>
                   <tr>
-                    <th scope="col">ID FACTURA</th>
-                    <th scope="col">ID EMPLEADO</th>
-                    <th scope="col">ID CLIENTE</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">NOMBRE DE FACTURA</th>
+                    <th scope="col">EMPLEADO</th>
+                    <th scope="col">CLIENTE</th>
                     <th scope="col">FECHA</th>
                     <th scope="col">BORRAR</th>
                     <th scope="col">EDITAR</th>
@@ -69,8 +70,9 @@ $cliente = $data->obtenerCliente();
                     ?>
                     <tr>
                       <td><?= $value['id']?></td>
-                      <td><?= $value['nombre']?></td>
-                      <td><?= $value['nombre']?></td>
+                      <td><?= $value['nombreFactura']?></td>
+                      <td><?= $value['nombreEmpleado']?></td>
+                      <td><?= $value['nombreCliente']?></td>
                       <td><?= $value['fecha']?></td>
                       <td>
                         <a class="btn btn-danger" href="borrarFactura.php?id=<?=$value['id']?>&req=delete">Borrar</a>
@@ -105,24 +107,33 @@ $cliente = $data->obtenerCliente();
           <div class="modal-body" style="background-color: rgb(231, 253, 246);">
             <form class="col d-flex flex-wrap" action="registrarFactura.php" method="post">
               <div class="mb-1 col-12">
-                <label for="id_empleado" class="form-label">Empleado</label>
+                <label for="nombreFactura" class="form-label">Nombre de la Factura</label>
+                <input 
+                  type="text"
+                  id="nombreFactura"
+                  name="nombreFactura"
+                  class="form-control"  
+                />
+              </div>
+              <div class="mb-1 col-12">
+                <label for="id_empleado" class="form-label">¿Hacia qué empleado se realizará la factura?</label>
                   <select name="id_empleado" id="id_empleado" class="form-select"  >
                     <option value="nothing">Seleccione el empleado</option>
                     <?php
                       foreach($empleado as $key => $valueE){
                     ?>
-                    <option value="<?= $valueE['id']?>"><?= $valueE['nombre']?></option>
+                    <option value="<?= $valueE['id']?>"><?= $valueE['nombreEmpleado']?></option>
                   <?php }?>
                 </select>
               </div>
               <div class="mb-1 col-12">
-                <label for="id_cliente" class="form-label">Cliente</label>
+                <label for="id_cliente" class="form-label">¿Hacia qué cliente se realizará la factura?</label>
                   <select name="id_cliente" id="id_cliente" class="form-select"  >
                     <option value="nothing">Seleccione el cliente</option>
                     <?php
                       foreach($cliente as $key => $valueC){
                     ?>
-                    <option value="<?= $valueC['id']?>"><?= $valueC['nombre']?></option>
+                    <option value="<?= $valueC['id']?>"><?= $valueC['nombreCliente']?></option>
                   <?php }?>
                 </select>
               </div>

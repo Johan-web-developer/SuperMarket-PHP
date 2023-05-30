@@ -10,14 +10,14 @@ require_once("db.php");
 
 class Config {
     private $id;
-    private $nombre;
+    private $nombreProveedor;
     private $telefono;
     private $ciudad;
     protected $dbPDO;
 
-    public function __construct($id = 0, $nombre = "", $telefono = "", $ciudad = ""){
+    public function __construct($id = 0, $nombreProveedor = "", $telefono = "", $ciudad = ""){
         $this->id = $id;
-        $this->nombre = $nombre;
+        $this->nombreProveedor = $nombreProveedor;
         $this->telefono = $telefono;
         $this->ciudad = $ciudad;
         $this->dbPDO = new PDO(DB_TYPE.":host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PWD, [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
@@ -31,12 +31,12 @@ class Config {
         return $this->id;
     }
 
-    public function setNombre($nombre){
-        $this->nombre = $nombre;
+    public function setNombreProveedor($nombreProveedor){
+        $this->nombreProveedor = $nombreProveedor;
     }
 
-    public function getNombre(){
-        return $this->nombre;
+    public function getNombreProveedor(){
+        return $this->nombreProveedor;
     }
 
     public function setTelefono($telefono){
@@ -57,8 +57,8 @@ class Config {
 
     public function insertDatos(){
         try {
-            $stm = $this-> dbPDO -> prepare("INSERT INTO proveedores (nombre, telefono, ciudad) values(?,?,?)");
-            $stm -> execute([$this->nombre, $this->telefono, $this->ciudad]);
+            $stm = $this-> dbPDO -> prepare("INSERT INTO proveedores (nombreProveedor, telefono, ciudad) values(?,?,?)");
+            $stm -> execute([$this->nombreProveedor, $this->telefono, $this->ciudad]);
         } catch (Exception $e) {
             return var_dump($e->getMessage());
         }
@@ -97,8 +97,8 @@ class Config {
 
     public function update(){
         try {
-            $stm = $this->dbPDO->prepare("UPDATE proveedores SET nombre = ?, telefono = ?, ciudad = ? WHERE id = ?");
-            $stm -> execute([$this->nombre, $this->telefono, $this->ciudad, $this->id]);
+            $stm = $this->dbPDO->prepare("UPDATE proveedores SET nombreProveedor = ?, telefono = ?, ciudad = ? WHERE id = ?");
+            $stm -> execute([$this->nombreProveedor, $this->telefono, $this->ciudad, $this->id]);
         } catch (Exception $e) {
             return $e->getMessage();
         }

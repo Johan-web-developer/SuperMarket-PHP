@@ -15,7 +15,7 @@ $rer = $data->seleccionar();
 $vall = $rer[0];
 
 if (isset($_POST["editar"])){
-  $data->setNombre($_POST["nombre"]);
+  $data->setNombreProveedor($_POST["nombreProveedor"]);
   $data->setTelefono($_POST["telefono"]);
   $data->setCiudad($_POST['ciudad']);
 
@@ -49,13 +49,13 @@ if (isset($_POST["editar"])){
     <div id="contenido">
       <form class="col d-flex flex-wrap" action=""  method="post">
               <div class="mb-1 col-12">
-                <label for="nombre" class="form-label">Nombre</label>
+                <label for="nombreProveedor" class="form-label">Nombre del Proveedor</label>
                 <input 
                   type="text"
-                  id="nombre"
-                  name="nombre"
+                  id="nombreProveedor"
+                  name="nombreProveedor"
                   class="form-control"  
-                  value ="<?php echo $vall['nombre'];?>"
+                  value ="<?php echo $vall['nombreProveedor'];?>"
                 />
               </div>
 

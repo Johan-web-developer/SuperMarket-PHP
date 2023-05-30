@@ -67,7 +67,7 @@ $all = $data->obtener();
                     ?>
                     <tr>
                       <td><?= $value['id']?></td>
-                      <td><?= $value['nombre']?></td>
+                      <td><?= $value['nombreCliente']?></td>
                       <td><?= $value['celular']?></td>
                       <td><?= $value['compañia']?></td>
                       <td>
@@ -103,11 +103,11 @@ $all = $data->obtener();
           <div class="modal-body" style="background-color: rgb(231, 253, 246);">
             <form class="col d-flex flex-wrap" action="registrarCliente.php" method="post">
               <div class="mb-1 col-12">
-                <label for="nombre" class="form-label">Nombre</label>
+                <label for="nombreCliente" class="form-label">Nombre de Cliente</label>
                 <input 
                   type="text"
-                  id="nombre"
-                  name="nombre"
+                  id="nombreCliente"
+                  name="nombreCliente"
                   class="form-control"  
                 />
               </div>

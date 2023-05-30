@@ -11,7 +11,7 @@ if (isset($_POST['guardar'])){
 
     $config = new Config();
 
-    $config-> setNombre($_POST['nombre']);
+    $config-> setNombreCategoria($_POST['nombreCategoria']);
     $config-> setDescripcion($_POST['descripcion']);
     $config-> setImagen($_POST['imagen']);
     $config-> insertDatos();

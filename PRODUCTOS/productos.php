@@ -56,11 +56,11 @@ $proveedor = $data->obtenerProveedor();
                 <thead>
                   <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">ID CATEGORIA</th>
+                    <th scope="col">NOMBRE DE CATEGORIA</th>
                     <th scope="col">PRECIO</th>
                     <th scope="col">STOCK</th>
                     <th scope="col">UNIDADES</th>
-                    <th scope="col">ID PROVEEDOR</th>
+                    <th scope="col">NOMBRE DEL PROVEEDOR</th>
                     <th scope="col">NOMBRE DEL PRODUCTO</th>
                     <th scope="col">DESCONTINUADO</th>
                     <th scope="col">BORRAR</th>
@@ -73,11 +73,11 @@ $proveedor = $data->obtenerProveedor();
                     ?>
                     <tr>
                       <td><?= $value['id']?></td>
-                      <td><?= $value['id_categoria']?></td>
+                      <td><?= $value['nombreCategoria']?></td>
                       <td><?= $value['precio']?></td>
                       <td><?= $value['stock']?></td>
                       <td><?= $value['unidades']?></td>
-                      <td><?= $value['id_proveedor']?></td>
+                      <td><?= $value['nombreProveedor']?></td>
                       <td><?= $value['nombre']?></td>
                       <td><?= $value['descontinuado']?></td>
                       <td>
@@ -113,13 +113,13 @@ $proveedor = $data->obtenerProveedor();
           <div class="modal-body" style="background-color: rgb(231, 253, 246);">
             <form class="col d-flex flex-wrap" action="registrarProducto.php" method="post">
               <div class="mb-1 col-12">
-                <label for="id_categoria" class="form-label">ID Categoria</label>
+                <label for="id_categoria" class="form-label">¿De qué categoria es el producto?</label>
                   <select name="id_categoria" id="id_categoria" class="form-select"  >
                     <option value="nothing">Seleccione la categoria</option>
                     <?php
                       foreach($categoria as $key => $valueC){
                     ?>
-                    <option value="<?= $valueC['id']?>"><?= $valueC['nombre']?></option>
+                    <option value="<?= $valueC['id']?>"><?= $valueC['nombreCategoria']?></option>
                   <?php }?>
                 </select>
               </div>
@@ -151,13 +151,13 @@ $proveedor = $data->obtenerProveedor();
                 />
               </div>
               <div class="mb-1 col-12">
-                <label for="id_proveedor" class="form-label">ID Proveedor</label>
+                <label for="id_proveedor" class="form-label">¿Hacia qué proveedor se dirige?</label>
                   <select name="id_proveedor" id="id_proveedor" class="form-select"  >
                     <option value="nothing">Seleccione el proveedor</option>
                     <?php
                       foreach($proveedor as $key => $valueP){
                     ?>
-                    <option value="<?= $valueP['id']?>"><?= $valueP['nombre']?></option>
+                    <option value="<?= $valueP['id']?>"><?= $valueP['nombreProveedor']?></option>
                   <?php }?>
                 </select>
               </div>

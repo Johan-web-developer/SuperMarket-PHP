@@ -11,7 +11,7 @@ if (isset($_POST['guardar'])){
 
     $config = new Config();
 
-    $config-> setNombre($_POST['nombre']);
+    $config-> setNombreProveedor($_POST['nombreProveedor']);
     $config-> setTelefono($_POST['telefono']);
     $config-> setCiudad($_POST['ciudad']);
     $config-> insertDatos();

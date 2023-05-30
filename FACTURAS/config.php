@@ -10,13 +10,15 @@ require_once("db.php");
 
 class Config {
     private $id;
+    private $nombreFactura;
     private $id_empleado;
     private $id_cliente;
     private $fecha;
     protected $dbPDO;
 
-    public function __construct($id = 0, $id_empleado = "", $id_cliente = "", $fecha = ""){
+    public function __construct($id = 0, $nombreFactura = "", $id_empleado = "", $id_cliente = "", $fecha = ""){
         $this->id = $id;
+        $this->nombreFactura = $nombreFactura;
         $this->id_empleado = $id_empleado;
         $this->id_cliente = $id_cliente;
         $this->fecha = $fecha;
@@ -29,6 +31,14 @@ class Config {
 
     public function getId(){
         return $this->id;
+    }
+
+        public function setNombreFactura($nombreFactura){
+        $this->nombreFactura = $nombreFactura;
+    }
+
+    public function getNombreFactura(){
+        return $this->nombreFactura;
     }
 
     public function setId_empleado($id_empleado){
@@ -57,8 +67,8 @@ class Config {
 
     public function insertDatos(){
         try {
-            $stm = $this-> dbPDO -> prepare("INSERT INTO facturas (id_empleado, id_cliente, fecha) values(?,?,?)");
-            $stm -> execute([$this->id_empleado, $this->id_cliente, $this->fecha]);
+            $stm = $this-> dbPDO -> prepare("INSERT INTO facturas (nombreFactura, id_empleado, id_cliente, fecha) values(?,?,?,?)");
+            $stm -> execute([$this->nombreFactura, $this->id_empleado, $this->id_cliente, $this->fecha]);
         } catch (Exception $e) {
             return var_dump($e->getMessage());
         }
@@ -66,7 +76,7 @@ class Config {
 
     public function obtener(){
         try {
-            $stm = $this->dbPDO->prepare("SELECT facturas.id, empleados.nombre, clientes.nombre, facturas.fecha FROM facturas INNER JOIN empleados ON facturas.id_empleado = empleados.id INNER JOIN clientes ON facturas.id_cliente = clientes.id");
+            $stm = $this->dbPDO->prepare("SELECT facturas.id, facturas.nombreFactura, empleados.nombreEmpleado, clientes.nombreCliente, facturas.fecha FROM facturas INNER JOIN empleados ON facturas.id_empleado = empleados.id INNER JOIN clientes ON facturas.id_cliente = clientes.id");
             $stm -> execute();
             return $stm -> fetchAll(); // Método para obtener los registros PDO
         } catch (Exception $e) {
@@ -76,7 +86,7 @@ class Config {
 
     public function obtenerEmpleado(){
         try {
-            $stm = $this->dbPDO->prepare("SELECT id, nombre FROM empleados");
+            $stm = $this->dbPDO->prepare("SELECT id, nombreEmpleado FROM empleados");
             $stm -> execute();
             return $stm -> fetchAll(); // Método para obtener los registros PDO
         } catch (Exception $e) {
@@ -86,7 +96,7 @@ class Config {
 
     public function obtenerCliente(){
         try {
-            $stm = $this->dbPDO->prepare("SELECT id, nombre FROM clientes");
+            $stm = $this->dbPDO->prepare("SELECT id, nombreCliente FROM clientes");
             $stm -> execute();
             return $stm -> fetchAll(); // Método para obtener los registros PDO
         } catch (Exception $e) {
@@ -117,8 +127,8 @@ class Config {
 
     public function update(){
         try {
-            $stm = $this->dbPDO->prepare("UPDATE facturas SET id_empleado = ?, id_cliente = ?, fecha = ? WHERE id = ?");
-            $stm -> execute([$this->id_empleado,$this->id_cliente, $this->fecha, $this->id]);
+            $stm = $this->dbPDO->prepare("UPDATE facturas SET nombreFactura = ?, id_empleado = ?, id_cliente = ?, fecha = ? WHERE id = ?");
+            $stm -> execute([$this->nombreFactura,  $this->id_empleado, $this->id_cliente, $this->fecha, $this->id]);
         } catch (Exception $e) {
             return $e->getMessage();
         }

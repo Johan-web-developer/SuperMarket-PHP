@@ -106,7 +106,7 @@ class Config {
 
     public function obtener(){
         try {
-            $stm = $this->dbPDO->prepare("SELECT * FROM productos");
+            $stm = $this->dbPDO->prepare("SELECT productos.id, categorias.nombreCategoria, productos.precio, productos.stock, productos.unidades, proveedores.nombreProveedor, productos.nombre, productos.descontinuado FROM productos INNER JOIN categorias ON productos.id_categoria = categorias.id INNER JOIN proveedores ON productos.id_proveedor = proveedores.id");
             $stm -> execute();
             return $stm -> fetchAll(); // Método para obtener los registros PDO
         } catch (Exception $e) {
@@ -116,7 +116,7 @@ class Config {
 
     public function obtenerCategoria(){
         try {
-            $stm = $this->dbPDO->prepare("SELECT id, nombre FROM categorias");
+            $stm = $this->dbPDO->prepare("SELECT id, nombreCategoria FROM categorias");
             $stm -> execute();
             return $stm -> fetchAll(); // Método para obtener los registros PDO
         } catch (Exception $e) {
@@ -126,7 +126,7 @@ class Config {
 
     public function obtenerProveedor(){
         try {
-            $stm = $this->dbPDO->prepare("SELECT id, nombre FROM proveedores");
+            $stm = $this->dbPDO->prepare("SELECT id, nombreProveedor FROM proveedores");
             $stm -> execute();
             return $stm -> fetchAll(); // Método para obtener los registros PDO
         } catch (Exception $e) {

@@ -61,7 +61,7 @@ if (isset($_POST["editar"])){
                     <?php
                       foreach($categoria as $key => $valueC){
                     ?>
-                    <option value="<?= $valueC['id']?>"><?= $valueC['nombre']?></option>
+                    <option value="<?= $valueC['id']?>"><?= $valueC['nombreCategoria']?></option>
                   <?php }?>
                   </select>  
               </div>
@@ -98,11 +98,11 @@ if (isset($_POST["editar"])){
               <div class="mb-1 col-12">
                 <label for="id_proveedor" class="form-label">Proveedor</label>
                 <select name="id_proveedor" id="id_proveedor" class="form-select" value ="<?php echo $vall['id_proveedor'];?>">
-                    <option value="nothing">Seleccione la categoria</option>
+                    <option value="nothing">Seleccione el proveedor</option>
                     <?php
                       foreach($proveedor as $key => $valueP){
                     ?>
-                    <option value="<?= $valueP['id']?>"><?= $valueP['nombre']?></option>
+                    <option value="<?= $valueP['id']?>"><?= $valueP['nombreProveedor']?></option>
                   <?php }?>
                   </select>  
               </div>

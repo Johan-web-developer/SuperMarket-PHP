@@ -15,7 +15,7 @@ $rer = $data->seleccionar();
 $vall = $rer[0];
 
 if (isset($_POST["editar"])){
-  $data->setNombre($_POST["nombre"]);
+  $data->setNombreCategoria($_POST["nombreCategoria"]);
   $data->setDescripcion($_POST["descripcion"]);
   if (!empty($_FILES['imagen']['tmp_name'])) {
     $imagen = $_FILES['imagen']['name'];
@@ -24,7 +24,6 @@ if (isset($_POST["editar"])){
     $data->setImagen($imagen);
   } else {
     $data->setImagen($vall['imagen']);
-    echo "<script>alert('protopitos')</script>";
   }
 
   $data-> update();
@@ -57,13 +56,13 @@ if (isset($_POST["editar"])){
     <div id="contenido">
       <form class="col d-flex flex-wrap" action=""  method="post" enctype="multipart/form-data">
               <div class="mb-1 col-12">
-                <label for="nombre" class="form-label">Nombre</label>
+                <label for="nombreCategoria" class="form-label">Nombre de la Categoria</label>
                 <input 
                   type="text"
-                  id="nombre"
-                  name="nombre"
+                  id="nombreCategoria"
+                  name="nombreCategoria"
                   class="form-control"  
-                  value ="<?php echo $vall['nombre'];?>"
+                  value ="<?php echo $vall['nombreCategoria'];?>"
                 />
               </div>
 
