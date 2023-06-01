@@ -142,10 +142,6 @@ $all = $data->obtener();
       integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
       crossorigin="anonymous"></script>
 
-      <footer class="foot">
-          <h5>© Copyright - TODOS LOS DERECHOS RESERVADOS | Javier Andrés Núñez Sánchez PROFESSIONAL DESIGNER</h5>
-          <p>Colombia - Santander</p>
-        </footer>
 </body>
 
 </html>

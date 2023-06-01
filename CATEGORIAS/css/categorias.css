@@ -11,14 +11,14 @@
 .izquierda {
     padding: 3rem;
     text-align: center;
-    background: rgba(80, 155, 80, 0.445);
+    background: rgba(217, 82, 25, 0.948);
     height: 100vh;
-    color: rgb(1, 75, 1);
+    color: rgb(202, 202, 202);
     width: 32vw;
 }
 
 .container {
-    background: rgba(180, 238, 180, 0.61);
+    background: rgba(199, 70, 26, 0.61);
     background-image: url("https://img.freepik.com/foto-gratis/habitacion-vacia-fondo-estudio-abstracto-degradado-verde-liso-lujo-espacio-texto-e-imagen_1258-63953.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -39,17 +39,7 @@ h1 {
     width: 30%;
 }
 
-.foot {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    background: rgb(20, 61, 20);
-    height: 100%;
-    color: rgb(111, 197, 111);
-    padding-top: 1.3rem;
-}
+
 
 .flexMenu {
     display: flex; 
@@ -66,9 +56,9 @@ a {
 }
 
 a:hover {
-    background: rgb(20, 61, 20);
+    background: rgb(255, 255, 255);
     transform: scale(1.1);
-    color:  rgb(111, 197, 111);
+    color:  rgb(208, 69, 23);
     text-decoration: none;
 }
 

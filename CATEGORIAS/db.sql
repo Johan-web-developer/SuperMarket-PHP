@@ -1,4 +1,5 @@
-CREATE DATABASE SuperMarketJav
+CREATE DATABASE SuperMarketJav;
+
 
 CREATE TABLE categorias(
     id INT primary key AUTO_INCREMENT,
@@ -6,3 +7,6 @@ CREATE TABLE categorias(
     descripcion VARCHAR (50),
     imagen VARCHAR (40)
 );
+
+
+use SuperMarketJav;

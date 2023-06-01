@@ -36,6 +36,7 @@ $all = $data->obtener();
     <div class="izquierda">
       <h1>MENU</h1>
       <div class="flexMenu">
+       <a href="../Login/register.php" style="text-decoration: none" class="colora">HOME</a>
         <a href="../CATEGORIAS/categorias.php" style="text-decoration: none" class="colora">CATEGORIAS</a>
         <a href="../CLIENTES/clientes.php" style="text-decoration: none" class="colora">CLIENTES</a>
         <a href="../EMPLEADOS/empleados.php" style="text-decoration: none" class="colora">EMPLEADOS</a>
@@ -137,10 +138,6 @@ $all = $data->obtener();
       integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
       crossorigin="anonymous"></script>
 
-      <footer class="foot">
-          <h5>© Copyright - TODOS LOS DERECHOS RESERVADOS | Javier Andrés Núñez Sánchez PROFESSIONAL DESIGNER</h5>
-          <p>Colombia - Santander</p>
-        </footer>
 </body>
 
 </html>
