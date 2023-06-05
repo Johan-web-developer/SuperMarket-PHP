@@ -1,4 +1,4 @@
-CREATE DATABASE SuperMarketJav
+CREATE DATABASE SuperMarketJav;
 
 CREATE TABLE clientes(
     id INT primary key AUTO_INCREMENT,

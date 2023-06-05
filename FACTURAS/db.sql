@@ -1,4 +1,4 @@
-CREATE DATABASE SuperMarketJav
+CREATE DATABASE SuperMarketJav;
 
 CREATE TABLE facturas(
     id INT primary key AUTO_INCREMENT,
